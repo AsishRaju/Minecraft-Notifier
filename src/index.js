@@ -27,12 +27,12 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 350,
     height: 600,
-    // show: false,
+    show: false,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(app.getAppPath(), 'src/render.js')
     },
-    // resizable: false,
+    resizable: false,
   });
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
@@ -53,7 +53,7 @@ const createWindow = () => {
     }
   });
 
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Notification Worker
 
@@ -98,7 +98,8 @@ const createWindow = () => {
     sendWindowMessage(mainWindow, 'message-from-notification-worker', arg);
   });
 
-  tray = new Tray(path.join(app.getAppPath(), 'src/images/icon.png'))
+  tray = new Tray(path.join(app.getAppPath(), 'src/images/offline.png'));
+
   tray.setToolTip('Minecraft Notifier')
 
   if (process.platform === 'win32') {
@@ -115,12 +116,18 @@ function updateMenu() {
   let items = []
 
   if (server_status) {
+
+    tray.setImage(path.join(app.getAppPath(), 'src/images/online.png'));
+
     items.push({
       label: 'Server is Online',
       enabled: false
     });
   }
   else {
+
+    tray.setImage(path.join(app.getAppPath(), 'src/images/offline.png'));
+
     items.push({
       label: 'Server is Offline',
       enabled: false
