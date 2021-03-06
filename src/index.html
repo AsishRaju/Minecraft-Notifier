@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Minecraft Notifier</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <div class="logo">
+    <img src="./images/minecraft-logo.png" alt="minecraft-logo">
+  </div>
+
+  <div class="stats">
+    <span>Server Status: </span>
+    <span class="server-status" id='status'>Offile</span>
+  </div>
+
+  <div>
+    <span class="heading">Online Players: </span>
+    <span class="heading player-count">0</span>
+  </div>
+
+  <div class="players"></div>
+
+  <!-- You can also require other files to run in this process -->
+  <script src="./render.js"></script>
+</body>
+
+</html>
